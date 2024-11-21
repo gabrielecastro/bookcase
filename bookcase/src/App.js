@@ -4,6 +4,7 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import Header from './components/Header';
+import MenuTabs from './components/MenuTabs';
 import { BooksContextProvider } from './context/BooksContext';
 
 
@@ -12,6 +13,7 @@ function App() {
     <BooksContextProvider>
       <div className="App">
         <Header />
+        <MenuTabs />
       </div>
     </BooksContextProvider>
   );
