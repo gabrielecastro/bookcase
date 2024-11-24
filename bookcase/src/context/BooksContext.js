@@ -9,6 +9,7 @@ export const BooksContextProvider = ({ children }) => {
   const [nextReading, setNextReading] = useState([]);
   const [completedReadings, setCompletedReadings] = useState([]);
   const [readingInProgress, setReadingInProgress] = useState([]);
+  const [tabValue, setTabValue] = useState(0);
 
   const getBooks = async () => {
     try {
@@ -47,6 +48,8 @@ export const BooksContextProvider = ({ children }) => {
         setCompletedReadings,
         readingInProgress,
         setReadingInProgress,
+        tabValue,
+        setTabValue
       }}>
       {children}
     </BooksContext.Provider>

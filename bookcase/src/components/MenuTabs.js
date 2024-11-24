@@ -1,22 +1,27 @@
 import { Tab, Tabs } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import TabPanel from "./TabPanel";
 import Home from "../pages/Home";
 import Reading from "../pages/Reading";
 import Read from "../pages/Read";
 import NextReadings from "../pages/NextReadings";
+import { BooksContext } from "../context/BooksContext";
+import Search from "../pages/Search";
 
 export const MenuTabs = () => {
-    const [value, setValue] = useState(0);
+  const { 
+   tabValue,
+   setTabValue
+  } = useContext(BooksContext); 
 
     const handleChange = (event, newValue) => {
-      setValue(newValue);
+      setTabValue(newValue);
     };
 
     return (
         <>
           <Tabs
-            value={value}
+            value={tabValue}
             onChange={handleChange}
             textColor="secondary"
             indicatorColor="secondary"
@@ -26,18 +31,22 @@ export const MenuTabs = () => {
               <Tab value={1} label="Lendo" />
               <Tab value={2} label="Lidos" />
               <Tab value={3} label="Pŕoximas leituras" />
+              <Tab value={4} label="Buscar" />
           </Tabs>
-          <TabPanel value={value} index={0}>
+          <TabPanel value={tabValue} index={0}>
             <Home />
           </TabPanel>
-          <TabPanel value={value} index={1}>
+          <TabPanel value={tabValue} index={1}>
             <Reading />
           </TabPanel>
-          <TabPanel value={value} index={2}>
+          <TabPanel value={tabValue} index={2}>
             <Read />
           </TabPanel>
-          <TabPanel value={value} index={3}>
+          <TabPanel value={tabValue} index={3}>
             <NextReadings  />
+          </TabPanel>
+          <TabPanel value={tabValue} index={4}>
+            <Search />
           </TabPanel>
         </>
     );
