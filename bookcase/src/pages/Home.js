@@ -13,9 +13,9 @@ const Home = () => {
     return (
       <Stack>
         <BookCase title="Todos" books={books} />
-        <BookCase title="Lendo" books={readingInProgress} />
-        <BookCase title="Lidos" books={completedReadings} />
-        <BookCase title="Pŕoximas leituras" books={nextReading} />
+        <BookCase title="Lendo" books={readingInProgress} deleteBook={true} list={'reading'} />
+        <BookCase title="Lidos" books={completedReadings} deleteBook={true} list={'concluded'} />
+        <BookCase title="Pŕoximas leituras" books={nextReading} deleteBook={true} list={'nextReading'} />
       </Stack>
     );
 }

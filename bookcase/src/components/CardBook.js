@@ -1,10 +1,33 @@
-import { Box, Button, Chip, LinearProgress, Stack, Typography, linearProgressClasses } from "@mui/material";
+import { Box, Button, Chip, IconButton, LinearProgress, Stack, Typography } from "@mui/material";
 import StarIcon from '@mui/icons-material/Star';
 import BookDetailsModal from "./BookDetaisModal";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { BooksContext } from "../context/BooksContext";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import AutoStoriesIcon from '@mui/icons-material/AutoStories';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
-const CardBook = ({ book, progress, author, concluded }) => {
+const CardBook = ({ book, progress, author, concluded, deleteBook, list }) => {
   const [open, setOpen] = useState(false);
+  const { 
+    nextReading,
+    setNextReading, 
+    readingInProgress, 
+    setReadingInProgress,
+    completedReadings, 
+    setCompletedReadings,
+  } = useContext(BooksContext);
+
+  const onDeleteBook = () => {
+    if (list === 'nextReading') {
+      setNextReading(nextReading.filter((item) => item.id !== book.id));
+    } else if (list === 'reading') {
+      setReadingInProgress(readingInProgress.filter((item) => item.id !== book.id));
+    } else if (list === 'concluded') {
+      setCompletedReadings(completedReadings.filter((item) => item.id !== book.id));
+    }
+  }
 
     return (
       <>
@@ -36,6 +59,32 @@ const CardBook = ({ book, progress, author, concluded }) => {
             {concluded && (
               <Chip icon={<StarIcon sx={{ color: 'yellow' }} />} label="5.0" sx={{ width: '100px' }} />
             )}
+            <Stack direction="row" alignItems="start" gap={1}>
+              <IconButton
+                sx={{ color: '#34D35F' }}
+                onClick={() => {
+                  setCompletedReadings([...completedReadings, book])}
+                }>
+                  <CheckCircleOutlineIcon />
+              </IconButton>
+              <IconButton
+                sx={{ color: '#8A8A8A' }}
+                onClick={() => setNextReading([...nextReading, book])}>
+                  <FavoriteBorderIcon />
+              </IconButton>
+              <IconButton 
+                sx={{ color: '#8C9EF4' }}
+                onClick={() => setReadingInProgress([...readingInProgress, book])}>
+                  <AutoStoriesIcon />
+              </IconButton>
+              {deleteBook && (
+                <IconButton 
+                  sx={{ color: '#da5552' }}
+                  onClick={onDeleteBook}>
+                    <HighlightOffIcon />
+                </IconButton>
+              )}
+            </Stack>
           </Stack>
         </Button>
 
