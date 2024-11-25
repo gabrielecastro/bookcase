@@ -19,13 +19,19 @@ const CardBook = ({ book, progress, author, concluded, deleteBook, list }) => {
     setCompletedReadings,
   } = useContext(BooksContext);
 
+  const addBookToList = (list, setList, book) => {
+    if (!list.some((item) => item.id === book.id)) {
+      setList([...list, book]);
+    }
+  };
+
   const onDeleteBook = () => {
     if (list === 'nextReading') {
-      setNextReading(nextReading.filter((item) => item.id !== book.id));
+      setNextReading(nextReading?.filter((item) => item.id !== book.id));
     } else if (list === 'reading') {
-      setReadingInProgress(readingInProgress.filter((item) => item.id !== book.id));
+      setReadingInProgress(readingInProgress?.filter((item) => item.id !== book.id));
     } else if (list === 'concluded') {
-      setCompletedReadings(completedReadings.filter((item) => item.id !== book.id));
+      setCompletedReadings(completedReadings?.filter((item) => item.id !== book.id));
     }
   }
 
@@ -62,19 +68,17 @@ const CardBook = ({ book, progress, author, concluded, deleteBook, list }) => {
             <Stack direction="row" alignItems="start" gap={1}>
               <IconButton
                 sx={{ color: '#34D35F' }}
-                onClick={() => {
-                  setCompletedReadings([...completedReadings, book])}
-                }>
+                onClick={() => addBookToList(completedReadings, setCompletedReadings, book)}>
                   <CheckCircleOutlineIcon />
               </IconButton>
               <IconButton
                 sx={{ color: '#8A8A8A' }}
-                onClick={() => setNextReading([...nextReading, book])}>
+                onClick={() => addBookToList(nextReading, setNextReading, book)}>
                   <FavoriteBorderIcon />
               </IconButton>
               <IconButton 
                 sx={{ color: '#8C9EF4' }}
-                onClick={() => setReadingInProgress([...readingInProgress, book])}>
+                onClick={() => addBookToList(readingInProgress, setReadingInProgress, book)}>
                   <AutoStoriesIcon />
               </IconButton>
               {deleteBook && (
