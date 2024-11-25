@@ -8,7 +8,12 @@ const Search = () => {
   const [filteredBooks, setFilteredBooks] = useState([]);
 
   const handleChange = (event) => {
-    const newBooks = books.filter((book) => book.title.toLowerCase().includes(event.toLowerCase()));
+    const searchQuery = event.toLowerCase();
+    const newBooks = books.filter((book) =>
+      book.title.toLowerCase().includes(searchQuery) ||
+      book.authors?.some((author) => author.toLowerCase().includes(searchQuery)) ||
+      book.categories?.some((category) => category.toLowerCase().includes(searchQuery))
+    );
     setFilteredBooks(newBooks);
   };
 
