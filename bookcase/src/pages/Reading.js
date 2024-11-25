@@ -1,10 +1,10 @@
-import { Stack, Typography } from "@mui/material";
-import { useContext, useEffect } from "react";
+import { Stack } from "@mui/material";
+import { useContext } from "react";
 import { BooksContext } from "../context/BooksContext";
 import BookCase from "../components/BookCase";
 
 const Reading = () => {
-  const { books, readingInProgress } = useContext(BooksContext);
+  const { readingInProgress } = useContext(BooksContext);
 
 
     return (

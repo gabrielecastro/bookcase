@@ -1,4 +1,4 @@
-import { Stack, Typography } from "@mui/material";
+import { Stack } from "@mui/material";
 import { useContext, useEffect } from "react";
 import { BooksContext } from "../context/BooksContext";
 import BookCase from "../components/BookCase";

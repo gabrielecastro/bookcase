@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { BooksContext } from "../context/BooksContext";
 
 const NextReadings = () => {
-  const { books, nextReading } = useContext(BooksContext);
+  const { nextReading } = useContext(BooksContext);
 
   return (
     <Stack>

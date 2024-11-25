@@ -1,4 +1,4 @@
-import { Box, Button, Chip, IconButton, LinearProgress, Stack, Typography } from "@mui/material";
+import { Box, Button, Chip, IconButton, Stack, Typography } from "@mui/material";
 import StarIcon from '@mui/icons-material/Star';
 import BookDetailsModal from "./BookDetaisModal";
 import { useContext, useState } from "react";
@@ -55,29 +55,29 @@ const CardBook = ({ book, author, concluded, deleteBook, list }) => {
         </Button>
 
         <Stack direction="row" alignItems="start" gap={1}>
-              <IconButton
-                sx={{ color: '#34D35F' }}
-                onClick={() => addBookToList(completedReadings, setCompletedReadings, book)}>
-                  <CheckCircleOutlineIcon />
-              </IconButton>
-              <IconButton
-                sx={{ color: '#8A8A8A' }}
-                onClick={() => addBookToList(nextReading, setNextReading, book)}>
-                  <FavoriteBorderIcon />
-              </IconButton>
-              <IconButton 
-                sx={{ color: '#8C9EF4' }}
-                onClick={() => addBookToList(readingInProgress, setReadingInProgress, book)}>
-                  <AutoStoriesIcon />
-              </IconButton>
-              {deleteBook && (
-                <IconButton 
-                  sx={{ color: '#da5552' }}
-                  onClick={onDeleteBook}>
-                    <HighlightOffIcon />
-                </IconButton>
-              )}
-            </Stack>
+          <IconButton
+            sx={{ color: '#34D35F' }}
+            onClick={() => addBookToList(completedReadings, setCompletedReadings, book)}>
+              <CheckCircleOutlineIcon />
+          </IconButton>
+          <IconButton
+            sx={{ color: '#8A8A8A' }}
+            onClick={() => addBookToList(nextReading, setNextReading, book)}>
+              <FavoriteBorderIcon />
+          </IconButton>
+          <IconButton 
+            sx={{ color: '#8C9EF4' }}
+            onClick={() => addBookToList(readingInProgress, setReadingInProgress, book)}>
+              <AutoStoriesIcon />
+          </IconButton>
+          {deleteBook && (
+            <IconButton 
+              sx={{ color: '#da5552' }}
+              onClick={onDeleteBook}>
+                <HighlightOffIcon />
+            </IconButton>
+          )}
+        </Stack>
 
         <BookDetailsModal open={open} onClose={() => setOpen(false)} book={book} />
       </Stack>
