@@ -39,8 +39,8 @@ const CardBook = ({ book, author, concluded, deleteBook, list }) => {
       <Stack alignItems="center">
         <Button
           onClick={() => setOpen(true)}
-          sx={{ color: '#4B4B4B' }}>
-          <Stack gap={2} sx={{ width: '180px' }}>
+          sx={{ color: '#4B4B4B'}}>
+          <Stack gap={2} alignItems='center' sx={{ width: '180px' }}>
             <img src={book.imageLinks?.thumbnail} alt={book.title} className='img-book' />
             <Typography variant='subtitle1'>{book.title}</Typography>
             {author && book.authors.map((author) => (
