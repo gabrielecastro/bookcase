@@ -1,7 +1,7 @@
 
 ## Bookcase - Estante de livros
 
-O Bookcase é uma estante virtual de livros desenvolvido com React e a biblioteca MUI (Material UI). O usuário adiciona livros a diferentes categorias como Lendo, Já lidos e Pŕoximas leituras, além de poder pesquisar por novos livros. O sistema oferece uma interface amigável e intuitiva, proporcionando uma experiência agradável de categorização de livros.
+O Bookcase é uma estante virtual de livros desenvolvido com React e a biblioteca MUI (Material UI) e que integra com uma api de livros. O usuário adiciona livros a diferentes categorias como Lendo, Já lidos e Pŕoximas leituras, além de poder pesquisar por novos livros. O sistema oferece uma interface amigável e intuitiva, proporcionando uma experiência agradável de categorização de livros.
 
 
 ### Rodando a aplicação
