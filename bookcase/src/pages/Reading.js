@@ -9,7 +9,7 @@ const Reading = () => {
 
     return (
       <Stack>
-        <BookCase title="Minhas leituras atuais" books={readingInProgress} progress={true} author={true} />
+        <BookCase title="Minhas leituras atuais" books={readingInProgress} author={true} />
       </Stack>
     );
 }

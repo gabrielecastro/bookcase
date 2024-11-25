@@ -8,7 +8,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
-const CardBook = ({ book, progress, author, concluded, deleteBook, list }) => {
+const CardBook = ({ book, author, concluded, deleteBook, list }) => {
   const [open, setOpen] = useState(false);
   const { 
     nextReading,
@@ -48,20 +48,6 @@ const CardBook = ({ book, progress, author, concluded, deleteBook, list }) => {
                 <Typography variant='subtitle2' color="text.secondary">. {author}</Typography>
               </Box>
             ))}
-            {progress && (
-              <LinearProgress
-                variant="determinate"
-                value={60}
-                sx={{ 
-                  height: 8,
-                  borderRadius: 5,
-                  backgroundColor: '#ECEDF6',
-                  '& .MuiLinearProgress-bar': {
-                  backgroundColor: '#8C9EF4',
-                }
-                }}
-              />
-            )}
             {concluded && (
               <Chip icon={<StarIcon sx={{ color: 'yellow' }} />} label="5.0" sx={{ width: '100px' }} />
             )}
