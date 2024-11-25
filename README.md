@@ -24,5 +24,5 @@ O Bookcase é uma estante virtual de livros desenvolvido com React e a bibliotec
 ```
 
 
-![gif](src/assets/logo.png)
+![gif](src/assets/bookcase.gif)
 
