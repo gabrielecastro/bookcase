@@ -8,7 +8,7 @@ O Bookcase é uma estante virtual de livros desenvolvido com React e a bibliotec
 1 - Clone o repositório:
 ```bash
   git clone git@github.com:gabrielecastro/bookcase.git
-  cd seu-repositorio
+  cd bookcase
 ```
 
 2 - Executar localmente:
