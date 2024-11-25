@@ -14,9 +14,14 @@ const BookDetailsModal = ({ onClose, open, book }) => {
     setReadingInProgress,
     completedReadings, 
     setCompletedReadings,
-    openSnackbar,
-    setOpenSnackbar,
   } = useContext(BooksContext);
+
+  const addBookToList = (list, setList, book) => {
+    if (!list.some((item) => item.id === book.id)) {
+      setList([...list, book]);
+    }
+    onClose();
+  };
 
   return (
     <Dialog onClose={onClose} open={open} maxWidth="md">
@@ -29,20 +34,20 @@ const BookDetailsModal = ({ onClose, open, book }) => {
               startIcon={<CheckCircleOutlineIcon />}
               sx={{ color: '#34D35F' }}
               onClick={() => {
-                setCompletedReadings([...completedReadings, book])}
+                addBookToList(completedReadings, setCompletedReadings, book)}
               }>
                 Concluir
             </Button>
             <Button
               startIcon={<FavoriteBorderIcon />} 
               sx={{ color: '#8A8A8A' }}
-              onClick={() => setNextReading([...nextReading, book])}>
+              onClick={() => addBookToList(nextReading, setNextReading, book)}>
                 Adicionar a lista
             </Button>
             <Button 
               startIcon={<AutoStoriesIcon />} 
               sx={{ color: '#8C9EF4' }}
-              onClick={() => setReadingInProgress([...readingInProgress, book])}>
+              onClick={() => addBookToList(readingInProgress, setReadingInProgress, book)}>
                 Iniciar leitura
             </Button>
           </Stack>
