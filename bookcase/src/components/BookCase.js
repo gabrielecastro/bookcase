@@ -4,7 +4,7 @@ import CardBook from './CardBook';
 const BookCase = ({ title, books, progress, author, concluded, deleteBook, list }) => {
 
     return (
-        <Stack paddingX={4}>
+        <Stack paddingX={6} my={2}>
           <Typography variant='h6' textAlign="start" my={2}>{title}</Typography>
           <Stack direction="row" gap={6}>
             {books && books.map((book) => (

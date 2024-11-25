@@ -36,7 +36,7 @@ const CardBook = ({ book, progress, author, concluded, deleteBook, list }) => {
   }
 
     return (
-      <>
+      <Stack alignItems="center">
         <Button
           onClick={() => setOpen(true)}
           sx={{ color: '#4B4B4B' }}>
@@ -65,7 +65,10 @@ const CardBook = ({ book, progress, author, concluded, deleteBook, list }) => {
             {concluded && (
               <Chip icon={<StarIcon sx={{ color: 'yellow' }} />} label="5.0" sx={{ width: '100px' }} />
             )}
-            <Stack direction="row" alignItems="start" gap={1}>
+          </Stack>
+        </Button>
+
+        <Stack direction="row" alignItems="start" gap={1}>
               <IconButton
                 sx={{ color: '#34D35F' }}
                 onClick={() => addBookToList(completedReadings, setCompletedReadings, book)}>
@@ -89,11 +92,9 @@ const CardBook = ({ book, progress, author, concluded, deleteBook, list }) => {
                 </IconButton>
               )}
             </Stack>
-          </Stack>
-        </Button>
 
         <BookDetailsModal open={open} onClose={() => setOpen(false)} book={book} />
-      </>
+      </Stack>
     );
 }
 
