@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const BooksContext = createContext();
 
@@ -6,10 +6,26 @@ export const BooksContextProvider = ({ children }) => {
   const [books, setBooks] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [nextReading, setNextReading] = useState([]);
-  const [completedReadings, setCompletedReadings] = useState([]);
-  const [readingInProgress, setReadingInProgress] = useState([]);
   const [tabValue, setTabValue] = useState(0);
+
+  const setLocalStorage = (listBooks, key) => {
+    localStorage.setItem(key, JSON.stringify(listBooks));
+  };
+
+  const getLocalStorage = (key) => {
+    const storedData = localStorage.getItem(key);
+    try {
+      return storedData ? JSON.parse(storedData) : [];
+    } catch (error) {
+      console.error(`Erro ao ler a chave "${key}" do localStorage:`, error);
+      return [];
+    }
+  };
+
+  const [nextReading, setNextReading] = useState(getLocalStorage('nextReading'));
+  const [completedReadings, setCompletedReadings] = useState(getLocalStorage('completedReadings'));
+  const [readingInProgress, setReadingInProgress] = useState(getLocalStorage('readingInProgress'));
+
 
   const getBooks = async () => {
     try {
@@ -33,7 +49,21 @@ export const BooksContextProvider = ({ children }) => {
     } finally {
       setLoading(false);
     }
-  }
+  };
+
+  // Sincroniza mudanças no estado com o localStorage
+  useEffect(() => {
+    setLocalStorage(nextReading, 'nextReading');
+  }, [nextReading]);
+
+  useEffect(() => {
+    setLocalStorage(completedReadings, 'completedReadings');
+  }, [completedReadings]);
+
+  useEffect(() => {
+    setLocalStorage(readingInProgress, 'readingInProgress');
+  }, [readingInProgress]);
+
 
   return (
     <BooksContext.Provider 
@@ -49,11 +79,13 @@ export const BooksContextProvider = ({ children }) => {
         readingInProgress,
         setReadingInProgress,
         tabValue,
-        setTabValue
+        setTabValue,
+        setLocalStorage,
+        getLocalStorage
       }}>
       {children}
     </BooksContext.Provider>
   );
-}
+};
 
-
+export default BooksContextProvider;
